@@ -1,0 +1,28 @@
+@json = application/json
+@from = {{$processEnv MAIL_FROM}}
+@to = {{$processEnv MAIL_TO}}
+
+### Send text e-mail
+POST http://127.0.0.1:3000/send
+content-type: {{json}}
+accept: {{json}}
+
+{
+    "from": "{{from}}",
+    "to": "{{to}}",
+    "subject": "Hello",
+    "plain": "this is very important message"
+}
+
+### Send html e-mail
+POST http://127.0.0.1:3000/send
+content-type: {{json}}
+accept: {{json}}
+
+{
+    "from": "{{from}}",
+    "to": "{{to}}",
+    "subject": "Hello",
+    "plain": "This is very important message.",
+    "html": "<h1>This is very important message.</h1>"
+}
