@@ -12,7 +12,7 @@ anyhow = "1.0.57"
 async-trait = "0.1.56"
 axum = { version = "0.5.6", features = ["http2"] }
 clap = { version = "3.1.18", features = ["derive", "env"] }
-http = "0.2.7"
+http = "0.2.8"
 hyper = "0.14.19"
 lettre = { version = "0.10.0-rc.7", features = ["tokio1-native-tls"] }
 serde = { version = "1.0.137", features = ["derive"] }
