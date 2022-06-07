@@ -1,7 +1,7 @@
 //!
 #![warn(missing_debug_implementations, rust_2018_idioms, missing_docs)]
 
-use anyhow::Result;
+use anyhow::{Context, Result};
 use budgie::{
     email::Auth,
     lettre::Mailer,
@@ -66,12 +66,12 @@ async fn run() -> Result<()> {
         })
     }
 
-    let mailer = Mailer::new(&cli.smtp_relay, auth)?;
+    let mailer = Mailer::new(&cli.smtp_relay, auth).context("failed creating mailer")?;
 
     let mailer = Arc::new(mailer) as DynMailer;
 
     let server = Server::new(cli.port, mailer);
-    server.serve().await?;
+    server.serve().await.context("failed running server")?;
 
     Ok(())
 }
