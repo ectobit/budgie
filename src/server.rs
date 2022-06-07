@@ -82,7 +82,8 @@ impl IntoResponse for MailerError {
     }
 }
 
-#[derive(Error, Debug)]
+#[non_exhaustive]
+#[derive(Debug, Error)]
 pub enum ServerError {
     #[error("hyper error")]
     Hyper(#[from] hyper::Error),

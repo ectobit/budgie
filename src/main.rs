@@ -114,7 +114,8 @@ impl str::FromStr for LogFormat {
     }
 }
 
-#[derive(Error, Debug)]
+#[non_exhaustive]
+#[derive(Debug, Error)]
 enum LogFormatError {
     #[error("invalid log format")]
     Invalid,

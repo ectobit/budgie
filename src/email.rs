@@ -25,7 +25,8 @@ pub trait Sender {
     async fn send(&self, message: Message) -> Result<(), MailerError>;
 }
 
-#[derive(Error, Debug)]
+#[non_exhaustive]
+#[derive(Debug, Error)]
 pub enum MailerError {
     #[error("lettre address error")]
     LettreAddress(#[from] lettre::address::AddressError),
