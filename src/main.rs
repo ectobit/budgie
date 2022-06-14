@@ -16,22 +16,22 @@ use std::{
 use thiserror::Error;
 use tracing::info;
 
-#[derive(Parser)]
+#[derive(Parser, Debug)]
 #[clap(version, about, long_about = None)]
 struct Cli {
-    #[clap(long, env, default_value_t = 3000, validator = valid_port)]
+    #[clap(long, env, value_parser = valid_port, default_value_t = 3000)]
     port: u16,
 
-    #[clap(long, env, default_value_t = String::from("smtp.ectobit.com"))]
+    #[clap(long, env,  value_parser, default_value_t = String::from("smtp.ectobit.com"))]
     smtp_relay: String,
 
-    #[clap(long, env)]
+    #[clap(long, env, value_parser)]
     smtp_username: Option<String>,
 
-    #[clap(long, env)]
+    #[clap(long, env, value_parser)]
     smtp_password: Option<String>,
 
-    #[clap(env, default_value_t = LogFormat::Plain)]
+    #[clap(env, value_parser, default_value_t = LogFormat::Plain)]
     log_format: LogFormat,
 }
 
@@ -86,7 +86,7 @@ fn valid_port(s: &str) -> Result<(), String> {
     Err(format!("Invalid port: {}", s))
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 enum LogFormat {
     Plain,
     Json,
