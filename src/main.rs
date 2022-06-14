@@ -76,10 +76,10 @@ async fn run() -> Result<()> {
     Ok(())
 }
 
-fn valid_port(s: &str) -> Result<(), String> {
+fn valid_port(s: &str) -> Result<u16, String> {
     if let Ok(port) = u16::from_str(s) {
         if (1..=65535).contains(&port) {
-            return Ok(());
+            return Ok(port);
         }
     }
 
