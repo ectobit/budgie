@@ -1,6 +1,6 @@
 [package]
 name = "budgie"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Boban Acimovic <boban.acimovic@gmail.com>"]
 license = "BSD-2-Clause-Patent"
 edition = "2021"
