@@ -83,7 +83,7 @@ fn valid_port(s: &str) -> Result<u16, String> {
         }
     }
 
-    Err(format!("Invalid port: {}", s))
+    Err(format!("Invalid port: {s}"))
 }
 
 #[derive(Debug, Clone)]
@@ -98,7 +98,7 @@ impl fmt::Display for LogFormat {
             LogFormat::Plain => "plain",
             LogFormat::Json => "json",
         };
-        write!(f, "{}", v)
+        write!(f, "{v}")
     }
 }
 
